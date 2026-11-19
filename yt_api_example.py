@@ -5,8 +5,9 @@
 # https://developers.google.com/explorer-help/code-samples#python
 
 import os
-
+import dotenv
 import googleapiclient.discovery
+
 
 def main():
     # Disable OAuthlib's HTTPS verification when running locally.
@@ -15,7 +16,8 @@ def main():
 
     api_service_name = "youtube"
     api_version = "v3"
-    DEVELOPER_KEY = "YOUR_API_KEY"
+    dotenv.load_dotenv()
+    DEVELOPER_KEY = os.getenv('API_KEY')
 
     youtube = googleapiclient.discovery.build(
         api_service_name, api_version, developerKey = DEVELOPER_KEY)
